@@ -4,4 +4,6 @@
 - `npm start`
 
 ## запуск фронтенда
-- запуск фронтенда
+- `cd shop`
+- `yarn install`
+- `yarn start`
