@@ -1,8 +1,10 @@
+import { Container } from 'semantic-ui-react'
+
 function App() {
   return (
-    <div className="App">
-      <p>mockinstore</p>
-    </div>
+    <Container>
+      <p>lorem ipsum dolor sit am</p>
+    </Container>
   );
 }
 
