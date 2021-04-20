@@ -46,7 +46,7 @@ export default function cartReducer(store = defaultStore, action) {
             const rm_id = action.payload.id
             const rm_selected = store.selected
             let rm_totalItems = store.totalItems
-            let rm_totalCost  = store
+            let rm_totalCost  = store.totalCost
 
             const rm_item = rm_selected[rm_id];
 

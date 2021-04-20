@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Icon, Modal, Item } from 'semantic-ui-react'
+import { Button, Icon, Modal, Item, Divider, Header } from 'semantic-ui-react'
 import Product from './Product/Product'
 import { isCartModalOpened } from '../../store/actions/cartActions'
 import { useDispatch } from 'react-redux'
@@ -32,6 +32,11 @@ const ModalCart = (props) => {
                             }
                         </Item.Group>
                     }
+
+                    <Divider></Divider>
+
+                    <Header as="h3">Итого: ${cart.totalCost}</Header>
+                    
             </Modal.Content>
 
             <Modal.Actions>
