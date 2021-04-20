@@ -6,13 +6,15 @@ import Product from './components/Product/Product'
 import CardPlaceholder from './components/CardPlaceholder/CardPlaceholder'
 import Sort from './components/Sort/Sort'
 import Search from './components/Search/Search'
-import ShoppingCart from './components/ShoppingCart/ShoppingCart'
+import SmallCart from './components/ShoppingCart/SmallCart'
+import ModalCart from './components/ShoppingCart/ModalCart'
 import classes from './App.module.css'
 
 function App() {
 
   const dispatch = useDispatch()
   const products = useSelector(state => state.products.products)
+  const cart = useSelector(state => state.cart)
   const productsFetching = useSelector(state => state.products.productsFetching)
 
   useEffect(() => {
@@ -22,12 +24,14 @@ function App() {
   return (
 
       <Container>
+        
+        <ModalCart cart={cart}/>
 
         <Grid divided centered padded='vertically'>
 
           <Grid.Column width={4}>
             
-            <ShoppingCart />
+            <SmallCart cart={cart}/>
             <Sort />  
             
           </Grid.Column>

@@ -1,7 +1,9 @@
-import { ADD_PRODUCT_TO_CART, REMOVE_PRODUCT_FROM_CART } from '../actions/actionTypes'
+import { ADD_PRODUCT_TO_CART, REMOVE_PRODUCT_FROM_CART, TOGGLE_CART_MODAL } from '../actions/actionTypes'
 
 const defaultStore = {
-    total : 0,
+    totalItems : 0,
+    totalCost : 0,
+    modalOpen : false,
     selected : {
         // id : {
         //     amount : 0,
@@ -18,7 +20,7 @@ export default function cartReducer(store = defaultStore, action) {
             
             const { id } = action.payload
             const { selected } = store
-            let { total } = store
+            let { totalItems, totalCost } = store
 
             const item = selected[id] || {
                 amount: 0,
@@ -26,15 +28,24 @@ export default function cartReducer(store = defaultStore, action) {
             };
 
             item.amount++
-            total++
+            totalItems++
+            totalCost += parseInt(action.payload.price)
 
             return {
                 ...store, 
-                total,
+                totalItems,
+                totalCost,
                 selected: {
                     ...selected,
                     [id] : item
                 }
+            }
+
+        case TOGGLE_CART_MODAL:
+
+            return{
+                ...store, 
+                modalOpen : !store.modalOpen
             }
     
         default:

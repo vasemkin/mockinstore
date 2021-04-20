@@ -1,6 +1,7 @@
 module.exports = function(){
     const faker = require('faker');
     const _ = require('lodash');
+    faker.locale = 'ru';
     return {
         items : _.times(300, function(n){
             return {
