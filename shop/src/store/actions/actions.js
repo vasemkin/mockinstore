@@ -1,13 +1,27 @@
-import { ADD_ITEM_TO_CART , REMOVE_ITEM_FROM_CART } from './actionTypes';
+import axios from 'axios'
+import { ADD_PRODUCT_TO_CART , REMOVE_PRODUCT_FROM_CART , GET_PRODUCTS } from './actionTypes'
 
-export function addItemToCart () {
+export const getProductsCreator = (products) => {
     return {
-        type: ADD_ITEM_TO_CART
+        type: GET_PRODUCTS,
+        payload: products
     }
 }
 
-export function addItemToCart () {
+export const getProducts = (order = 'desc') => {
+    return async dispatch => {
+        const response = await axios.get(`http://localhost:8888/items/?_sort=purchased&_order=${order}`)
+        dispatch(getProductsCreator(response.data))
+    }
+}
+export const addProductToCart = () => {
     return {
-        type: REMOVE_ITEM_FROM_CART
+        type: ADD_PRODUCT_TO_CART
+    }
+}
+
+export const removeProductFromCart = () => {
+    return {
+        type: REMOVE_PRODUCT_FROM_CART
     }
 }

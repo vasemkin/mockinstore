@@ -11,7 +11,8 @@ module.exports = function(){
                 color : faker.commerce.color(),
                 productMaterial : faker.commerce.productMaterial(),
                 productDescription : faker.commerce.productDescription(),
-                image : faker.image.abstract()
+                image : faker.image.abstract(),
+                purchased : faker.datatype.number()
             }
         })
     }

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start" : "json-server index.js"
+    "start" : "json-server -p 8888 index.js"
   },
   "keywords": [],
   "author": "",
