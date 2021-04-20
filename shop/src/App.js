@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react'
-import { Grid, Container, Segment, Card } from 'semantic-ui-react'
+import { Grid, Container, Segment, Card, Dimmer, Loader } from 'semantic-ui-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from './store/actions/actions'
 import Product from './components/Product/Product'
-import Filter from './components/Filter/Filter'
+import CardPlaceholder from './components/CardPlaceholder/CardPlaceholder'
+import Sort from './components/Sort/Sort'
+import Search from './components/Search/Search'
 import classes from './App.module.css'
 
 function App() {
 
   const dispatch = useDispatch()
   const products = useSelector(state => state.products.products)
+  const productsFetching = useSelector(state => state.products.productsFetching)
 
   useEffect(() => {
     dispatch(getProducts())
@@ -22,22 +25,39 @@ function App() {
         <Grid divided centered padded='vertically'>
 
           <Grid.Column width={4}>
-            <Filter />  
+            <Sort />  
           </Grid.Column>
 
           <Grid.Column width={12}>
 
             <Segment basic className={classes.App__container_main}>
 
-              <Card.Group itemsPerRow={3}>
+              <Search />
+              { productsFetching 
+              
+              ? <Grid columns={3} stackable>
 
                 {
-                  products.map (product => { 
-                    return (<Product product={product} />)
+                  [1,2,3,4,5,6].map(() => {
+                    return(
+                      <CardPlaceholder />
+                    )
+                  }) 
+                }
+
+                </Grid>
+
+              : <Card.Group itemsPerRow={3}>
+
+                {
+                  products.map(product => { 
+                    return (<Product product={product}/>)
                   })
                 }
 
-              </Card.Group>
+                </Card.Group>    
+              }
+ 
 
             </Segment>
 

@@ -4,20 +4,19 @@ import classes from './Product.module.css'
 
 const Product = (props) => {
 
-  const product = props.product;
-  console.log(product)
+  const product = props.product
 
   return (
     <Card>
 
       <Card.Content>
-
-          <Image
-            size='medium'
-            rounded
-            className={classes.Product__image}
-            src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'
-          />
+        
+            <Image
+              size='medium'
+              rounded
+              className={classes.Product__image}
+              src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'
+            />
 
           <Card.Header>{product.productName}</Card.Header>
 

@@ -1,8 +1,8 @@
-import { ADD_ITEM_TO_CART , REMOVE_ITEM_FROM_CART, GET_PRODUCTS } from '../actions/actionTypes';
+import { ADD_PRODUCT_TO_CART , REMOVE_PRODUCT_FROM_CART, GET_PRODUCTS, PRODUCTS_FETCHING } from '../actions/actionTypes';
 
 const defaultStore = {
     products : [],
-    isFetching : true
+    productsFetching : true
 }
 
 export default function itemReducer(store = defaultStore, action) {
@@ -14,7 +14,14 @@ export default function itemReducer(store = defaultStore, action) {
             return {
                 ...store,
                 products : action.payload,
-                isFetching : false
+                productsFetching : false
+            }
+        
+        case PRODUCTS_FETCHING :
+
+            return {
+                ...store,
+                productsFetching : action.payload
             }
 
         default:

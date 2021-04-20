@@ -1,11 +1,11 @@
 import React from 'react'
 import { Menu } from 'semantic-ui-react'
-import classes from './Filter.module.css'
+import classes from './Sort.module.css'
 
-const Filter = () => {
+const Sort = () => {
 
     return(
-        <Menu text vertical className={classes.Filter__menu}>
+        <Menu text vertical className={classes.Sort__menu}>
             <Menu.Item header>Сортировать</Menu.Item>
             <Menu.Item
                 name='Цена'
@@ -18,4 +18,4 @@ const Filter = () => {
 
 }
 
-export default Filter
+export default Sort
