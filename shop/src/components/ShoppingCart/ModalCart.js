@@ -1,16 +1,24 @@
 import React from 'react'
 import { Button, Icon, Modal, Item } from 'semantic-ui-react'
 import Product from './Product/Product'
+import { isCartModalOpened } from '../../store/actions/cartActions'
+import { useDispatch } from 'react-redux'
 
 const ModalCart = (props) => {
 
+    const dispatch = useDispatch()
     const cart = props.cart
+  
+    function cartModalHandler() {
+      dispatch(isCartModalOpened())
+    }
 
     return (
         <Modal
         open={cart.modalOpen}
         >
             <Modal.Header>Корзина</Modal.Header>
+
             <Modal.Content scrolling>
                     {cart.totalItems === 0 
                     ? <p>Корзина пуста</p>
@@ -25,11 +33,16 @@ const ModalCart = (props) => {
                         </Item.Group>
                     }
             </Modal.Content>
+
             <Modal.Actions>
+                <Button onClick={cartModalHandler} secondary>
+                Закрыть <Icon name='times' />
+                </Button>
                 <Button primary>
-                Proceed <Icon name='chevron right' />
+                Оформить заказ <Icon name='chevron right' />
                 </Button>
             </Modal.Actions>
+
         </Modal>
     )
 }

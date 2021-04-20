@@ -41,6 +41,38 @@ export default function cartReducer(store = defaultStore, action) {
                 }
             }
 
+        case REMOVE_PRODUCT_FROM_CART:
+            
+            const rm_id = action.payload.id
+            const rm_selected = store.selected
+            let rm_totalItems = store.totalItems
+            let rm_totalCost  = store
+
+            const rm_item = rm_selected[rm_id];
+
+            rm_item.amount--
+            rm_totalItems--
+            rm_totalCost -= parseInt(action.payload.price)
+
+            let newObj
+
+            if (rm_item.amount === 0) {
+                newObj = {...rm_selected}
+                delete newObj[rm_id]
+            } else {
+                newObj = {
+                    ...rm_selected,
+                    [rm_id] : rm_item
+                }
+            }
+
+            return {
+                ...store, 
+                totalItems : rm_totalItems,
+                totalCost : rm_totalCost,
+                selected : newObj
+            }
+
         case TOGGLE_CART_MODAL:
 
             return{
