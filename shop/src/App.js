@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
-import { Grid, Container, Segment, Card, Dimmer, Loader } from 'semantic-ui-react'
+import { Grid, Container, Segment, Card } from 'semantic-ui-react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProducts } from './store/actions/actions'
+import { getProducts } from './store/actions/productActions'
 import Product from './components/Product/Product'
 import CardPlaceholder from './components/CardPlaceholder/CardPlaceholder'
 import Sort from './components/Sort/Sort'
 import Search from './components/Search/Search'
+import ShoppingCart from './components/ShoppingCart/ShoppingCart'
 import classes from './App.module.css'
 
 function App() {
@@ -25,7 +26,10 @@ function App() {
         <Grid divided centered padded='vertically'>
 
           <Grid.Column width={4}>
+            
+            <ShoppingCart />
             <Sort />  
+            
           </Grid.Column>
 
           <Grid.Column width={12}>
@@ -38,9 +42,9 @@ function App() {
               ? <Grid columns={3} stackable>
 
                 {
-                  [1,2,3,4,5,6].map(() => {
+                  [1,2,3,4,5,6].map((an, index) => {
                     return(
-                      <CardPlaceholder />
+                      <CardPlaceholder key={`placeholder${index}`}/>
                     )
                   }) 
                 }
@@ -50,8 +54,8 @@ function App() {
               : <Card.Group itemsPerRow={3}>
 
                 {
-                  products.map(product => { 
-                    return (<Product product={product}/>)
+                  products.map((product) => { 
+                    return (<Product product={product} key={product.id}/>)
                   })
                 }
 

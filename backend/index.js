@@ -11,7 +11,7 @@ module.exports = function(){
                 color : faker.commerce.color(),
                 productMaterial : faker.commerce.productMaterial(),
                 productDescription : faker.commerce.productDescription(),
-                image : faker.image.abstract(),
+                image : `${faker.image.abstract()}?random=${Date.now()}`,
                 purchased : faker.datatype.number()
             }
         })

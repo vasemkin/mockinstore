@@ -1,8 +1,12 @@
-import { ADD_PRODUCT_TO_CART , REMOVE_PRODUCT_FROM_CART, GET_PRODUCTS, PRODUCTS_FETCHING } from '../actions/actionTypes';
+import { GET_PRODUCTS, PRODUCTS_FETCHING } from '../actions/actionTypes';
 
 const defaultStore = {
     products : [],
-    productsFetching : true
+    productsFetching : true,
+    pagination : {
+        totalPages : 1,
+        currentPage : 0
+    }
 }
 
 export default function itemReducer(store = defaultStore, action) {

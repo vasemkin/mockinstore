@@ -1,10 +1,17 @@
 import React from 'react'
 import { Card, Button, Image } from 'semantic-ui-react'
 import classes from './Product.module.css'
+import { addProduct } from '../../store/actions/cartActions'
+import { useDispatch } from 'react-redux'
 
 const Product = (props) => {
 
+  const dispatch = useDispatch()
   const product = props.product
+
+  function addProductHandler() {
+    dispatch(addProduct(product))
+  }
 
   return (
     <Card>
@@ -15,10 +22,10 @@ const Product = (props) => {
               size='medium'
               rounded
               className={classes.Product__image}
-              src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'
+              src={product.image}
             />
 
-          <Card.Header>{product.productName}</Card.Header>
+          <Card.Header className={classes.Product__header}>{product.productName}</Card.Header>
 
           <Card.Description>
               {product.description}
@@ -28,7 +35,7 @@ const Product = (props) => {
 
       <Card.Content extra>
 
-          <Button fluid>
+          <Button fluid onClick={addProductHandler}>
               Добавить
           </Button>
 
