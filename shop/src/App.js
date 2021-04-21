@@ -30,55 +30,48 @@ function App() {
         
         <ModalCart cart={cart} orders={orders}/>
 
-        <Grid divided centered padded='vertically'>
+        <Segment basic className={classes.App__container_main}>
 
-          <Grid.Column width={4}>
-            
-            <SmallCart cart={cart}/>
-            <Sort />  
-            
-          </Grid.Column>
+          <div className={classes.App__sticky}>
 
-          <Grid.Column width={12}>
+            <Search pagination={pagination}/>
 
-            <Segment basic className={classes.App__container_main}>
-
-              <Search pagination={pagination}/>
+            <div className={classes.App__flex}>
 
               <CardsPagination pagination={pagination} />
+              <SmallCart cart={cart}/>
 
-              { productsFetching 
-              
-              ? <Grid columns={3} stackable>
+            </div>
 
-                {
-                  [1,2,3,4,5,6].map((an, index) => {
-                    return(
-                      <CardPlaceholder key={`placeholder${index}`}/>
-                    )
-                  }) 
-                }
+          </div>
 
-                </Grid>
+          { productsFetching 
+          
+          ? <Grid columns={3} stackable>
 
-              : <Card.Group itemsPerRow={3}>
+            {
+              [1,2,3,4,5,6].map((an, index) => {
+                return(
+                  <CardPlaceholder key={`placeholder${index}`}/>
+                )
+              }) 
+            }
 
-                {
-                  products.map((product) => { 
-                    return (<Product product={product} key={product.id}/>)
-                  })
-                }
+            </Grid>
 
-                </Card.Group>    
-              }
- 
+          : <Card.Group itemsPerRow={3}>
 
-            </Segment>
+            {
+              products.map((product) => { 
+                return (<Product product={product} key={product.id}/>)
+              })
+            }
 
+            </Card.Group>    
+          }
 
-          </Grid.Column>
+        </Segment>
 
-        </Grid>
 
       </Container>
 

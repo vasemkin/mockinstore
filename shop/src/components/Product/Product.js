@@ -28,15 +28,16 @@ const Product = (props) => {
 
           <Card.Header className={classes.Product__header}>{product.productName}</Card.Header>
 
-          <Breadcrumb className={classes.Product__breadcrumb}>
-            <Breadcrumb.Section>{product.department}</Breadcrumb.Section>
-          </Breadcrumb>
 
-          <Card.Description>
-              {product.productDescription}
-          </Card.Description>
+          <div className={classes.Product__flex}>
+  
+            <Header as='h5' className={classes.Product__price}>${product.price}</Header>
+            
+            <Breadcrumb>
+              <Breadcrumb.Section>{product.department}</Breadcrumb.Section>
+            </Breadcrumb>
 
-          <Header as='h5'>${product.price}</Header>
+          </div>
 
           <Container>
             <ProductDropdown product={product}/>

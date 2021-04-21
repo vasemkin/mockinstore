@@ -1,9 +1,3 @@
-.SmallCart {
-    position: fixed;
-    bottom: 25rem;
-    left: 8rem;
-}
-
 .Product__flex{
     display: flex;
     justify-content: space-between;
