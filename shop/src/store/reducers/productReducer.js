@@ -1,11 +1,14 @@
-import { GET_PRODUCTS, PRODUCTS_FETCHING } from '../actions/actionTypes';
+import { SET_SEARCH_VALUE, SET_TOTAL_PRODUCTS, GET_PRODUCTS, PRODUCTS_FETCHING, CHANGE_PRODUCT_COLOR, SET_CURRENT_PAGE } from '../actions/actionTypes';
 
 const defaultStore = {
     products : [],
     productsFetching : true,
+    searchValue : '',
+    order : 'desc',
     pagination : {
-        totalPages : 1,
-        currentPage : 0
+        perPage : 6,
+        currentPage : 1,
+        totalCount : 0
     }
 }
 
@@ -26,6 +29,43 @@ export default function itemReducer(store = defaultStore, action) {
             return {
                 ...store,
                 productsFetching : action.payload
+            }
+        
+        case SET_SEARCH_VALUE :
+
+            return {
+                ...store,
+                searchValue : action.payload
+            }
+        
+        
+        case SET_CURRENT_PAGE :
+
+            return {
+                ...store,
+                pagination : {
+                    ...store.pagination,
+                    currentPage : action.payload
+                }
+            }
+        
+        
+        case SET_TOTAL_PRODUCTS :
+
+            return {
+                ...store,
+                pagination : {
+                    ...store.pagination,
+                    totalCount : action.payload
+                }
+            }
+
+        case CHANGE_PRODUCT_COLOR:
+
+            return {
+                ...store,
+                products : store.products.map(product => product.id === action.payload.productId 
+                ? {...product, defaultColor : action.payload.defaultColor } : product)
             }
 
         default:

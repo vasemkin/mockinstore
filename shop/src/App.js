@@ -6,6 +6,7 @@ import Product from './components/Product/Product'
 import CardPlaceholder from './components/CardPlaceholder/CardPlaceholder'
 import Sort from './components/Sort/Sort'
 import Search from './components/Search/Search'
+import CardsPagination from './components/CardsPagination/CardsPagination'
 import SmallCart from './components/ShoppingCart/SmallCart'
 import ModalCart from './components/ShoppingCart/ModalCart'
 import classes from './App.module.css'
@@ -16,11 +17,12 @@ function App() {
   const products = useSelector(state => state.products.products)
   const cart = useSelector(state => state.cart)
   const orders = useSelector(state => state.orders)
+  const pagination = useSelector(state => state.products.pagination)
   const productsFetching = useSelector(state => state.products.productsFetching)
 
   useEffect(() => {
-    dispatch(getProducts())
-  }, [])
+    dispatch(getProducts('desc', '', pagination.currentPage, pagination.perPage))
+  }, [pagination.currentPage])
 
   return (
 
@@ -41,7 +43,10 @@ function App() {
 
             <Segment basic className={classes.App__container_main}>
 
-              <Search />
+              <Search pagination={pagination}/>
+
+              <CardsPagination pagination={pagination} />
+
               { productsFetching 
               
               ? <Grid columns={3} stackable>

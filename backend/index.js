@@ -1,3 +1,5 @@
+const { fake } = require('faker');
+
 module.exports = function(){
     const faker = require('faker');
     const _ = require('lodash');
@@ -15,6 +17,7 @@ module.exports = function(){
                 price : faker.commerce.price(),
                 department : faker.commerce.department(),
                 colors : colors,
+                defaultColor : faker.datatype.number({ 'min': 0, 'max': 2 }),
                 productMaterial : faker.commerce.productMaterial(),
                 productDescription : faker.commerce.productDescription(),
                 image : `${faker.image.abstract()}?random=${Date.now()}`,

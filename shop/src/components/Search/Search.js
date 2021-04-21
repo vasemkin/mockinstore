@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
 import { Input } from 'semantic-ui-react'
 import classes from './Search.module.css'
-import { getProducts } from '../../store/actions/productActions'
+import { getProducts, setCurrentPage } from '../../store/actions/productActions'
 import { useDispatch } from 'react-redux'
 
-const Search = () => {
- 
+const Search = (props) => {
+    
+    const pagination = props.pagination
     const [searchValue, setSearchValue] = useState('')
     const dispatch = useDispatch()
 
     function searchHandler() {
-        dispatch(getProducts('desc', searchValue))
+        dispatch(setCurrentPage(1))
+        dispatch(getProducts('desc', searchValue, pagination.currentPage, pagination.perPage))
     }
 
     return(
