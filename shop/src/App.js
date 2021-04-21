@@ -15,6 +15,7 @@ function App() {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products.products)
   const cart = useSelector(state => state.cart)
+  const orders = useSelector(state => state.orders)
   const productsFetching = useSelector(state => state.products.productsFetching)
 
   useEffect(() => {
@@ -25,7 +26,7 @@ function App() {
 
       <Container>
         
-        <ModalCart cart={cart}/>
+        <ModalCart cart={cart} orders={orders}/>
 
         <Grid divided centered padded='vertically'>
 

@@ -1,9 +1,10 @@
-import { ADD_PRODUCT_TO_CART, REMOVE_PRODUCT_FROM_CART, TOGGLE_CART_MODAL } from '../actions/actionTypes'
+import { ADD_PRODUCT_TO_CART, REMOVE_PRODUCT_FROM_CART, TOGGLE_CART_MODAL, TOGGLE_ORDER_FIELD } from '../actions/actionTypes'
 
 const defaultStore = {
     totalItems : 0,
     totalCost : 0,
     modalOpen : false,
+    isOrderShown : false, //наверное это должно быть в отдельном редюсере и другой части стора, но у меня мало времени
     selected : {
         // id : {
         //     amount : 0,
@@ -78,6 +79,13 @@ export default function cartReducer(store = defaultStore, action) {
             return{
                 ...store, 
                 modalOpen : !store.modalOpen
+            }
+
+        case TOGGLE_ORDER_FIELD:
+
+            return{
+                ...store, 
+                isOrderShown : !store.isOrderShown
             }
     
         default:

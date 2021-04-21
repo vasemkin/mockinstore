@@ -5,3 +5,7 @@
 .Product__header{
     font-size: 14px !important;
 }
+
+.Product__breadcrumb{
+    margin: 1rem 0 !important;
+}

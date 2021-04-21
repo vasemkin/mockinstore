@@ -1,4 +1,4 @@
-import React, { useState }from 'react'
+import React, { useState } from 'react'
 import { Input } from 'semantic-ui-react'
 import classes from './Search.module.css'
 import { getProducts } from '../../store/actions/productActions'

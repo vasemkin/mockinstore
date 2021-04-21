@@ -20,6 +20,7 @@ module.exports = function(){
                 image : `${faker.image.abstract()}?random=${Date.now()}`,
                 purchased : faker.datatype.number()
             }
-        })
+        }),
+        orders : {}
     }
 }
