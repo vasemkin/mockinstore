@@ -7,16 +7,18 @@ const CardsPagination = (props) => {
 
   const dispatch = useDispatch()
   const pagination = props.pagination
+  const totalPages = Math.ceil(pagination.totalCount / pagination.perPage)
 
   return(
     <Pagination
+        activePage={pagination.currentPage}
         boundaryRange={0}
         defaultActivePage={1}
         ellipsisItem={null}
         firstItem={null}
         lastItem={null}
         siblingRange={1}
-        totalPages={10}
+        totalPages={totalPages}
         onPageChange={(event, data) => dispatch(setCurrentPage(data.activePage))}
     />
   )}

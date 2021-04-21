@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from './store/actions/productActions'
 import Product from './components/Product/Product'
 import CardPlaceholder from './components/CardPlaceholder/CardPlaceholder'
-import Sort from './components/Sort/Sort'
 import Search from './components/Search/Search'
 import CardsPagination from './components/CardsPagination/CardsPagination'
 import SmallCart from './components/ShoppingCart/SmallCart'
@@ -16,13 +15,14 @@ function App() {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products.products)
   const cart = useSelector(state => state.cart)
+  const searchValue = useSelector(state => state.products.searchValue)
   const orders = useSelector(state => state.orders)
   const pagination = useSelector(state => state.products.pagination)
   const productsFetching = useSelector(state => state.products.productsFetching)
 
   useEffect(() => {
-    dispatch(getProducts('desc', '', pagination.currentPage, pagination.perPage))
-  }, [pagination.currentPage])
+    dispatch(getProducts(products.order, searchValue, pagination.currentPage, pagination.perPage))
+  }, [pagination.currentPage, searchValue])
 
   return (
 

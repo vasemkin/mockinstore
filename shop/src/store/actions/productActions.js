@@ -32,7 +32,7 @@ export const setCurrentPage = (page) => {
     }
 }
 
-export const setSearchValue = (value) => {
+export const setSearchReqValue = (value) => {
     return {
         type: SET_SEARCH_VALUE,
         payload: value
